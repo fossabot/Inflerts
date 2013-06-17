@@ -15,5 +15,4 @@ require 'sinatra'
       :body => "Hey, Welcome to Pismo Beach!"
     ) 
   puts "Sent message to"
-  end
 end
