@@ -17,5 +17,6 @@ get '/forward-sms' do
     :from => from,
     :to => "+7162399248",
     :body => "#{bodytext}"
-  ) 
+  )
+  puts "Sent message to #{bodytext}" 
 end
