@@ -8,7 +8,10 @@ get '/forward-sms' do
   client = Twilio::REST::Client.new account_sid, auth_token
  
   from = "+17747664115" # Your Twilio number
-  bodytext = params[:Body]
+  bodylongtext = params[:Body]
+  bodytext = bodylongtext.each do |i|
+    i.truncate(160)
+  end
   replynumber = params[:From]
 
   roster = {
@@ -22,11 +25,13 @@ get '/forward-sms' do
         :from => from,
         :to => key,
         :body => "Test. #{bodytext}"
-  ) 
+      )
+  else 
     
-  client.account.sms.messages.create(
-    :from => from,
-    :to => "+17162399248",
-    :body => "From #{replyname}: #{bodytext} | Reply to: #{replynumber}"
-  ) 
+    client.account.sms.messages.create(
+      :from => from,
+      :to => "+17162399248",
+      :body => "From #{replyname}: #{bodytext} | Reply to: #{replynumber}"
+    ) 
+  end
 end
