@@ -13,11 +13,12 @@ get '/forward-sms' do
 
   roster = {
     "+17162399248" => "Jake",
-    "+15085070617" => "John"
-  } 
+  }
+
+
   replyname = roster[replynumber] || "Unknown"
 
-  if replynumber == "+17162399248"
+  if replynumber == "+17162399248" && bodytext.include?("#public")
     roster.each do |key, value|
       client.account.sms.messages.create(
         :from => from,
