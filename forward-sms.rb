@@ -26,7 +26,7 @@ get '/forward-sms' do
         :body => "Test. #{bodytext}"
       )
     end
-  elsif replynumber == "+17162399248" && bodytext.exclude?("#public")
+  elsif replynumber == "+17162399248" 
     client.account.sms.messages.create(
       :from => from,
       :to => "#{replynumber}",
