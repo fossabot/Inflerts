@@ -9,7 +9,7 @@ get '/forward-sms' do
  
   from = "+17747664115" # Your Twilio number
   bodylongtext = params[:Body]
-  bodytext = bodylongtext.each do |i|
+  bodytext = bodylongtext.map do |i|
     i.truncate(160)
   end
   replynumber = params[:From]
