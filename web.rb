@@ -8,7 +8,7 @@ client = Twilio::REST::Client.new account_sid, auth_token
 from = "+17747664115" # Your Twilio number
  
 friends = {
-"+14153334444" => "Jake",
+"+17162399248" => "Jake",
 }
 friends.each do |key, value|
   client.account.sms.messages.create(
