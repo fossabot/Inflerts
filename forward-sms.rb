@@ -8,7 +8,10 @@ get '/forward-sms' do
   client = Twilio::REST::Client.new account_sid, auth_token
  
   from = "+17747664115" # Your Twilio number
-  bodytext = params[:Body]
+  bodylongtext = params[:Body]
+  bodytext = bodylongtext.map do |i|
+    i.slice(0,160)
+  end
   replynumber = params[:From]
 
   roster = {
@@ -26,6 +29,12 @@ get '/forward-sms' do
         :body => "Test. #{bodytext}"
       )
     end
+  elsif replynumber == "+17162399248" && bodytext.include?("#public")
+    client.account.sms.messages.create(
+      :from => from,
+      :to => "#{replynumber}",
+      :body => "Did you mean to send a text to everyone? If so, type \"#public\" somewhere in your message."
+    ) 
   else 
     client.account.sms.messages.create(
       :from => from,
