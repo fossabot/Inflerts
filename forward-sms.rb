@@ -8,8 +8,12 @@ get '/forward-sms' do
     "+7162399248" => "Jake",
   }
   bodytext = params[:Body]
-  twiml = Twilio::TwiML::Response.new do |r|
-    r.Sms "#{bodytext}"
-  end
-  twiml.text
+  from = "+17747664115"
+  client = Twilio::REST::Client.new account_sid, auth_token
+
+  client.account.sms.messages.create(
+    :from => from,
+    :to => "+7162399248",
+    :body => "#{bodytext}"
+  ) 
 end
