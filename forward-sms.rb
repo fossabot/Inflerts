@@ -8,9 +8,8 @@ get '/forward-sms' do
     "+7162399248" => "Jake",
   }
   bodytext = params[:Body]
-  fowardmessage = friends[sender] || "empty"
   twiml = Twilio::TwiML::Response.new do |r|
-    r.Sms "#{fowardmessage}"
+    r.Sms "#{bodytext}"
   end
   twiml.text
 end
