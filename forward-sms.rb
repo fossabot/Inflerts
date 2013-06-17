@@ -8,11 +8,12 @@ require 'sinatra'
   client = Twilio::REST::Client.new account_sid, auth_token
  
   from = "+17747664115" # Your Twilio number
+  bodytext = params[:Body]
  
     client.account.sms.messages.create(
       :from => from,
       :to => "+17162399248",
-      :body => "Hey, Welcome to Pismo Beach!"
+      :body => "Hey #{bodytext}, Welcome to Pismo Beach!"
     ) 
   puts "Sent message to"
 end
