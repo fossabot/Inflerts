@@ -9,10 +9,17 @@ get '/forward-sms' do
  
   from = "+17747664115" # Your Twilio number
   bodytext = params[:Body]
-  replynumber = params[:From] 
-    client.account.sms.messages.create(
-      :from => from,
-      :to => "+17162399248",
-      :body => "Forwarded Message: #{bodytext}. Reply to: #{replynumber}"
-    ) 
+  replynumber = params[:From]
+
+  roster = {
+    "+17162399248" => "Jake",
+    "+15085070617" => "John"
+  } 
+  replyname = roster[replynumber] || "Unknown"
+    
+  client.account.sms.messages.create(
+    :from => from,
+    :to => "+17162399248",
+    :body => "From #{replyname}: #{bodytext} | Reply to: #{replynumber}"
+  ) 
 end
