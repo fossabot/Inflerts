@@ -8,10 +8,7 @@ get '/forward-sms' do
   client = Twilio::REST::Client.new account_sid, auth_token
  
   from = "+17747664115" # Your Twilio number
-  bodylongtext = params[:Body]
-  bodytext = bodylongtext.map do |i|
-    i.truncate(160)
-  end
+  bodytext = params[:Body]
   replynumber = params[:From]
 
   roster = {
