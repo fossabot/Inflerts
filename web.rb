@@ -2,7 +2,7 @@ require 'rubygems'
 require 'twilio-ruby'
 require 'sinatra'
  
-get '/sms-quickstart' do
+get '/web' do
   sender = params[:From]
   friends = {
     "+17162399248" => "Jake",
