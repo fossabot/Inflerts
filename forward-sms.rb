@@ -27,6 +27,7 @@ get '/forward-sms' do
         :to => key,
         :body => "Test. #{bodytext}"
       )
+    end
   else 
     client.account.sms.messages.create(
       :from => from,
