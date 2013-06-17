@@ -10,7 +10,7 @@ get '/forward-sms' do
   from = "+17747664115" # Your Twilio number
   bodylongtext = params[:Body]
   bodytext = bodylongtext.map do |i|
-    i.slice(0,160)
+    i.slice(0,10!0)
   end
   replynumber = params[:From]
 
@@ -29,7 +29,7 @@ get '/forward-sms' do
         :body => "Test. #{bodytext}"
       )
     end
-  elsif replynumber == "+17162399248" && bodytext.include?("#public")
+  elsif replynumber == "+17162399248" && !bodytext.include?("#public")
     client.account.sms.messages.create(
       :from => from,
       :to => "#{replynumber}",
