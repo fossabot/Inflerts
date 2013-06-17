@@ -2,3 +2,4 @@
 runtime "ruby"
 # exec is the file that will be executed:
 exec "web.rb"
+gem 'twilio-ruby'
