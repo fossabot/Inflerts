@@ -13,6 +13,8 @@ get '/forward-sms' do
 
   roster = {
     "+17162399248" => "Jake",
+    "+14085823425" => "Hamida",
+    "+16504215192" => "Terri",
   }
 
 
