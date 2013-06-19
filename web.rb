@@ -1,22 +1,27 @@
 require 'rubygems'
 require 'twilio-ruby'
  
-account_sid = "ACff661d56b0d1fdbc31917d5fd0f6c05b"
-auth_token = "5995c907bf237c2a8570d8fa0c31ed37"
-client = Twilio::REST::Client.new account_sid, auth_token
+ACCOUNT_SID = "ACff661d56b0d1fdbc31917d5fd0f6c05b"
+AUTH_TOKEN = "5995c907bf237c2a8570d8fa0c31ed37"
+
+client = Twilio::REST::Client.new ACCOUNT_SID, AUTH_TOKEN
  
-from = "+17747664115" # Your Twilio number
+FROM = "+17747664115" # Your Twilio number
  
-friends = {
-	"+17162399248" => "Jake",
-	"+14085823425" => "Hamida",
-	"+16504215192" => "Terri",
-}
-friends.each do |key, value|
+ADMINS = {
+    "+17162399248" => "Jake",
+    # "+14085823425" => "Hamida",
+    # "+16504215192" => "Terri",
+  }
+COMPANY = {
+
+}.merge(ADMINS)
+
+COMPANY.each do |phone, firstname|
   client.account.sms.messages.create(
-    :from => from,
-    :to => key,
-    :body => "Hey #{value}, Welcome to Pismo Beach!"
+    :from => FROM,
+    :to => phone,
+    :body => "Hey #{firstname}, Welcome to Pismo Beach!"
   ) 
-  puts "Sent message to #{value}"
+  puts "Sent message to #{firstname}"
 end
