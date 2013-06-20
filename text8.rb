@@ -10,8 +10,8 @@ FROM = "+17747664115" # Your Twilio number
  
 ADMINS = {
     "+17162399248" => "Jake",
-    # "+14085823425" => "Hamida",
-    # "+16504215192" => "Terri",
+    "+14085823425" => "Hamida",
+    "+16504215192" => "Terri",
   }
 COMPANY = {
 
@@ -21,7 +21,11 @@ COMPANY.each do |phone, firstname|
   client.account.sms.messages.create(
     :from => FROM,
     :to => phone,
-    :body => "Inflerts is up and running"
+    :body => "Welcome to Novo, this will transform into into Beleza Nights at 10pm. Shuttles returning from here are 9:30pm, 11am, 12am, 1am, and 2am."
   ) 
-  puts "Sent message to #{firstname}"
+  client.account.sms.messages.create(
+    :from => FROM,
+    :to => phone,
+    :body => "Call Jake at 716-239-9248 if you need assistance during this time."
+  ) 
 end
