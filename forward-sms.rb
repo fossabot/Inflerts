@@ -7,8 +7,8 @@ AUTH_TOKEN = "5995c907bf237c2a8570d8fa0c31ed37"
 FROM = "+17747664115" # My Twilio number
 ADMINS = {
     "+17162399248" => "Jake",
-    # "+14085823425" => "Hamida",
-    # "+16504215192" => "Terri",
+    "+14085823425" => "Hamida",
+    "+16504215192" => "Terri",
   }
 COMPANY = {
   # "+18583444981"=>"Ben",
@@ -101,7 +101,7 @@ get '/forward-sms' do
   else 
     client.account.sms.messages.create(
       :from => FROM,
-      :to => "+17162399248",
+      :to => from_admin,
       :body => "From #{replyname}: #{bodytext[0..110]} | Reply: #{replynumber}"
     ) 
   end
