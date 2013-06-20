@@ -100,10 +100,11 @@ get '/forward-sms' do
     ) 
   else 
     ADMINS.each do |phone, firstname|
-    client.account.sms.messages.create(
-      :from => FROM,
-      :to => phone,
-      :body => "From #{replyname}: #{bodytext[0..110]} | Reply: #{replynumber}"
-    ) 
+      client.account.sms.messages.create(
+        :from => FROM,
+        :to => phone,
+        :body => "From #{replyname}: #{bodytext[0..110]} | Reply: #{replynumber}"
+      )
+    end 
   end
 end
