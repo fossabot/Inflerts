@@ -72,15 +72,18 @@ COMPANY = {
   # "+16048386088"=>"John",
 }.merge(ADMINS)
 
-COMPANY.each do |phone, firstname|
-  client.account.sms.messages.create(
-    :from => FROM,
-    :to => phone,
-    :body => "Reminder: Shuttle leaving for Friday Night Crawl from hotel lobby in 15 minutes. Shuttles are returing from drop off point at 12:30 and 1:30am."
-  ) 
-  client.account.sms.messages.create(
-    :from => FROM,
-    :to => phone,
-    :body => "Call Jake at 716-239-9248 if you need assistance during this time."
-  ) 
+get '/welcome' do 
+  COMPANY.each do |phone, firstname|
+    client.account.sms.messages.create(
+      :from => FROM,
+      :to => phone,
+      :body => "Hello #{firstname}, this is the test of Inflection Alerts System (Inflerts for short)."
+    )
+    COMPANY.each do |phone, firstname|
+    client.account.sms.messages.create(
+      :from => FROM,
+      :to => phone,
+      :body => "We'll be using the Inflert system to text reminders and updates during the Pismo Beach Trip. Text this number (17747664115) to reach the Special Ops team."
+    ) 
+  end
 end
