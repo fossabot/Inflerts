@@ -99,9 +99,10 @@ get '/forward-sms' do
       :body => "Did you mean to send a text to everyone? If so, type \"#public\" somewhere in your message."
     ) 
   else 
+    ADMINS.each do |phone, firstname|
     client.account.sms.messages.create(
       :from => FROM,
-      :to => from_admin,
+      :to => phone,
       :body => "From #{replyname}: #{bodytext[0..110]} | Reply: #{replynumber}"
     ) 
   end
