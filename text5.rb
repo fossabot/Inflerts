@@ -79,11 +79,16 @@ COMPANY.each do |phone, firstname|
   client.account.sms.messages.create(
     :from => FROM,
     :to => phone,
-    :body => "Shuttles leaving for Inflection Beach for hotel lobby are running on the hour, every hour except 12pm, until 4pm today. (1/2)"
-  ) 
+    :body => "Shuttles leaving for Inflection Beach for hotel lobby are running on the hour, every hour except 12pm, until 4pm today. (1/3)"
+  )
   client.account.sms.messages.create(
     :from => FROM,
     :to => phone,
-    :body => "Call Hamida at 408-582-3425 if you need assistance during this time. (2/2)"
+    :body => "Note that shuttle can't pull into parking lot, so it's doing pickups on the hotel parking lot curb on Shell Beach Rd. (2/3)"
+  )  
+  client.account.sms.messages.create(
+    :from => FROM,
+    :to => phone,
+    :body => "Call Hamida at 408-582-3425 if you need assistance during this time. (2/3)"
   ) 
 end
